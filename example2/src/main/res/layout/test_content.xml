@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:background="#ffffff"
+    android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:id="@+id/mainLL"
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="fill_parent"
+        android:padding="4dp"
+        android:text="台湾将播出《武媚娘》完整版 "
+
+        android:layout_marginBottom="12dp"
+
+        android:layout_marginTop="12dp"
+
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:text="范冰冰主演的大型古装剧《武媚娘传奇》，因剧中女艺人穿低胸唐装而爆乳，大陆后改成“大头贴版”，台湾则争取到完整版，中视、中天30日首播，令大陆、香港观众羡慕“台湾观众最有眼福”！
+
+据台湾中时电子报报道，《武媚娘传奇》除范冰冰等一线卡司参与演出，也重金打造精致唐朝戏服、头饰，以及华丽场景。去年12月湖南卫视播出时，因剧中女艺人个个波涛汹涌，播到第17集遭大陆官方停播，剧组避开爆乳镜头，呈现胸部以上的大头画面，今年1月1日复播“大头贴版”，观众哗然，不过收视率创下百亿点击率，大结局还破5，成绩辉煌。浙江卫视后来也播出“大头贴版”。
+
+中视、中天购买该剧台湾版权，台湾“文化部”年前通过完整版，但大陆制作单位“唐德影视”却希望台湾播删减版，双方拉锯多时，最后在中视、中天坚持下，终于确定播出一刀未剪的原版。30日起，中视晚间8点、中天娱乐台晚间10点播出。范冰冰主演的大型古装剧《武媚娘传奇》，因剧中女艺人穿低胸唐装而爆乳，大陆后改成“大头贴版”，台湾则争取到完整版，中视、中天30日首播，令大陆、香港观众羡慕“台湾观众最有眼福”！
+
+据台湾中时电子报报道，《武媚娘传奇》除范冰冰等一线卡司参与演出，也重金打造精致唐朝戏服、头饰，以及华丽场景。去年12月湖南卫视播出时，因剧中女艺人个个波涛汹涌，播到第17集遭大陆官方停播，剧组避开爆乳镜头，呈现胸部以上的大头画面，今年1月1日复播“大头贴版”，观众哗然，不过收视率创下百亿点击率，大结局还破5，成绩辉煌。浙江卫视后来也播出“大头贴版”。
+
+中视、中天购买该剧台湾版 范冰冰主演的大型古装剧《武媚娘传奇》，因剧中女艺人穿低胸唐装而爆乳，大陆后改成“大头贴版”，台湾则争取到完整版，中视、中天30日首播，令大陆、香港观众羡慕“台湾观众最有眼福”！
+
+据台湾中时电子报报道，《武媚娘传奇》除范冰冰等一线卡司参与演出，也重金打造精致唐朝戏服、头饰，以及华丽场景。去年12月湖南卫视播出时，因剧中女艺人个个波涛汹涌，播到第17集遭大陆官方停播，剧组避开爆乳镜头，呈现胸部以上的大头画面，今年1月1日复播“大头贴版”，观众哗然，不过收视率创下百亿点击率，大结局还破5，成绩辉煌。浙江卫视后来也播出“大头贴版”。
+
+中视、中天购买该剧台湾版"
+        android:textSize="16sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:padding="4dp"
+        android:layout_height="wrap_content" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:layout_height="1px"/>
+        </LinearLayout>
+
+    </ScrollView>
