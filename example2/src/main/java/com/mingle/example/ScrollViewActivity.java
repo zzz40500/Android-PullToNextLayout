@@ -1,24 +1,21 @@
 package com.mingle.example;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.mingle.pulltonextlayout.OnItemSelectListener;
 import com.mingle.pulltonextlayout.PullToNextAdapter;
 import com.mingle.pulltonextlayout.PullToNextLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class PullToNextLayoutDemoActivity extends ActionBarActivity {
+public class ScrollViewActivity extends ActionBarActivity {
 
     public  PullToNextLayout pullToNextLayout;
 
@@ -29,20 +26,23 @@ public class PullToNextLayoutDemoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pull_to_next_layout_demo);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         pullToNextLayout= (PullToNextLayout) findViewById(R.id.pullToNextLayout);
 
 
         list=new ArrayList<>();
 
-        list.add(new  DemoFragment(0));
-        list.add(new  DemoFragment(1));
-        list.add(new  DemoFragment(2));
-        list.add(new  DemoFragment(3));
-        list.add(new  DemoFragment(4));
-        list.add(new  DemoFragment(5));
-        list.add(new  DemoFragment(6));
-        list.add(new  DemoFragment(7));
+        list.add(new ScrollViewFragment(0));
+        list.add(new ScrollViewFragment(1));
+        list.add(new ScrollViewFragment(2));
+        list.add(new ScrollViewFragment(3));
+        list.add(new ScrollViewFragment(4));
+        list.add(new ScrollViewFragment(5));
+        list.add(new ScrollViewFragment(6));
+        list.add(new ScrollViewFragment(7));
 
 
         pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
@@ -52,9 +52,10 @@ public class PullToNextLayoutDemoActivity extends ActionBarActivity {
             public void onSelectItem(int position, View view) {
 
 
-                Log.e("PullToNextLayoutDemoActivity","选中第 "+position+" 个 Item");
+                setTitle(position+1+".0 谷歌仍是毕业生心目中的最佳雇主");
             }
         });
+        setTitle(1+".0 谷歌仍是毕业生心目中的最佳雇主");
     }
 
 
@@ -76,6 +77,12 @@ public class PullToNextLayoutDemoActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 //            pullToNextLayout.setCurrentItem(4);
+            return true;
+        }
+        if (id == android.R.id.home) {
+
+
+            this.finish();
             return true;
         }
 

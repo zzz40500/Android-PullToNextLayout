@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-PullToNextLayout2.iml" filepath="$PROJECT_DIR$/Android-PullToNextLayout2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example2/example2.iml" filepath="$PROJECT_DIR$/example2/example2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulltonextlayout/pulltonextlayout.iml" filepath="$PROJECT_DIR$/pulltonextlayout/pulltonextlayout.iml" />
+    </modules>
+  </component>
+</project>
+

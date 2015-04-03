@@ -22,13 +22,17 @@ public class MainActivity extends ActionBarActivity {
     public void onClick(View view){
 
 
-       startActivity(new Intent(this,PullToNextLayoutDemoActivity.class));
+       startActivity(new Intent(this,ScrollViewActivity.class));
 
     }
     public void onClick2(View view){
 
+       startActivity(new Intent(this,WebViewActivity.class));
 
-       startActivity(new Intent(this,PullToNextLayoutDemoActivity.class));
+    }
+    public void onClick3(View view){
+
+       startActivity(new Intent(this,OtherActivity.class));
 
     }
 

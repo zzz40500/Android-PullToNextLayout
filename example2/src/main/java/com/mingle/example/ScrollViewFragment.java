@@ -14,7 +14,7 @@ import android.widget.TextView;
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
  */
-public class DemoFragment extends Fragment {
+public class ScrollViewFragment extends Fragment {
 
 
 
@@ -37,7 +37,7 @@ public class DemoFragment extends Fragment {
 
 
     private int  index;
-    public DemoFragment(int index) {
+    public ScrollViewFragment(int index) {
 
       this.index=index;
     }

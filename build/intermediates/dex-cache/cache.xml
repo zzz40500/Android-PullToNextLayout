@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/pre-dexed/debug/classes-90a6d2819c1446741242fad5c2489373d42ea037.jar" />
+    </item>
+    <item
+        jar="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-5bdf772b19e8f85b1a16aa0205f2ef4ebb4456b8.jar" />
+    </item>
+    <item
+        jar="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/pre-dexed/debug/classes-eeee03257fcecf1e9c4b5ec0d0fa434e4c75d36d.jar" />
+    </item>
+    <item
+        jar="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/exploded-aar/Android-PullToNextLayout2/pulltonextlayout/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="081712ce5097258ee6bd0d7e81b85ef2b4a443de">
+        <dex dex="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/pre-dexed/debug/classes-32a663cad6d80f3c9c3fcd6386660232852a55dc.jar" />
+    </item>
+    <item
+        jar="/Users/zzz40500/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/pre-dexed/debug/library-2.4.0-103f0bbba338a4e5011a08b84ce48d013d6dcaef.jar" />
+    </item>
+    <item
+        jar="/Users/zzz40500/Documents/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/zzz40500/Documents/myGithub/Android-PullToNextLayout2/example2/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-e682fb634600e9eae419a5a1502a1498f6eacb40.jar" />
+    </item>
+
+</items>

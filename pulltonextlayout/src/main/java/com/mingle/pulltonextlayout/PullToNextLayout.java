@@ -23,7 +23,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 public class PullToNextLayout extends FrameLayout {
 
 
-    private static final int ANIMATION_DURATION = 600;
+    private static final int ANIMATION_DURATION = 500;
 
 
     private boolean isAnimating;
@@ -108,7 +108,6 @@ public class PullToNextLayout extends FrameLayout {
         if (mCurItem - 1 >= 0) {
             //前面的 Fragment
             previousPTE.setPosition(mCurItem - 1);
-
             addPullToNextView(0, previousPTE);
             previousPTE.reset(mAdapter.getFm());
         }
@@ -145,13 +144,9 @@ public class PullToNextLayout extends FrameLayout {
         pullToNextView.setBackgroundColor(getResources().getColor(R.color.bg));
         pullToNextView.setPullToNextI(mPullToNextI);
         pullToNextView.setTag(frameLayoutId);
-
-
         entity.setFrameId(frameLayoutId);
         entity.setPullToNextView(pullToNextView);
-
         return entity;
-
     }
 
 
@@ -164,36 +159,26 @@ public class PullToNextLayout extends FrameLayout {
     public void addPullToNextView(int index, PullToNextEntity pullToNextView) {
 
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-
         View view=pullToNextView.getPullToNextView();
         if(view.getParent()  != null  && (view.getParent() instanceof  ViewGroup)){
             ViewGroup viewGroup= (ViewGroup) view.getParent();
-
-
             viewGroup.removeView(view);
         }
-
-
         this.addView(pullToNextView.getPullToNextView(), index, layoutParams);
-
         FragmentTransaction transaction = mAdapter.getFm().beginTransaction();
-
         Fragment f
                 = mAdapter.getFm().findFragmentByTag("position" + pullToNextView.getPosition());
 
         if (f != null) {
-
-
             transaction.attach(f);
         } else {
             transaction.add(pullToNextView.getFrameId(),
                     mAdapter.getItem(pullToNextView.getPosition())
                     , "position" + pullToNextView.getPosition());
-
         }
 
         transaction.commit();
+
 
         if (pullToNextView.getPosition() == 0) {
             pullToNextView.getPullToNextView().setHashPrevious(false);

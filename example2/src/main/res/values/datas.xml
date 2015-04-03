@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="urls">
+
+
+        <item >http://www.jianshu.com/p/8d8ac27f41eb</item>
+        <item >http://www.jianshu.com/p/3fe2acac0ddb</item>
+        <item >http://www.jianshu.com/p/fa1b34f7c570</item>
+        <item >http://www.jianshu.com/p/cb5b012d1d85</item>
+        <item >http://www.jianshu.com/p/54ab0e833273</item>
+        <item >http://www.jianshu.com/p/4d76b2bc8784</item>
+        <item >http://www.jianshu.com/p/ac27d4f41608</item>
+        <item >http://www.jianshu.com/p/b83ea5e32ee1</item>
+        <item >http://www.jianshu.com/p/cef7b2808335</item>
+
+    </string-array>
+</resources>
