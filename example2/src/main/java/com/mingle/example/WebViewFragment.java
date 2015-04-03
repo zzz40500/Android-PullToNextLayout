@@ -47,6 +47,7 @@ public class WebViewFragment extends Fragment {
 
         webView.loadUrl(urls[index]);
         webView.setWebChromeClient(new WebChromeClient());
+        webView.getSettings().setJavaScriptEnabled(true);
 
         return  v;
     }
