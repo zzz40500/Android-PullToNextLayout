@@ -35,25 +35,27 @@ java 代码中引用使用:
 ~~~
  pullToNextLayout= (PullToNextLayout) findViewById(R.id.pullToNextLayout);
         list=new ArrayList<Fragment>();
-        list.add(new  DemoFragment(0));
-        list.add(new  DemoFragment(1));
-        list.add(new  DemoFragment(2));
-        list.add(new  DemoFragment(3));
-        list.add(new  DemoFragment(4));
-        list.add(new  DemoFragment(5));
-        list.add(new  DemoFragment(6));
-        list.add(new  DemoFragment(7));
+       
+        list.add(new ScrollViewFragment(0));
+        list.add(new ScrollViewFragment(1));
+        list.add(new ScrollViewFragment(2));
+        list.add(new ScrollViewFragment(3));
+        list.add(new ScrollViewFragment(4));
+        list.add(new ScrollViewFragment(5));
+        list.add(new ScrollViewFragment(6));
+        list.add(new ScrollViewFragment(7));
 //设置适配器
         pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
 
-        pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
+       pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override
             public void onSelectItem(int position, View view) {
 
 
-                Log.e("PullToNextLayoutDemoActivity","选中第 "+position+" 个 Item");
+                setTitle(position+1+".0 谷歌仍是毕业生心目中的最佳雇主");
             }
         });
+        setTitle(1+".0 谷歌仍是毕业生心目中的最佳雇主");
 ~~~
 
 主要方法:
