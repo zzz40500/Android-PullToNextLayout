@@ -112,13 +112,13 @@ DemoFragment 中的主要布局:
 DemoFragment  以一个 ScrollView 为根控件.也可以使用其他布局为跟控件.
 
 1.0 内容:
->支持 ScrollView和其他布局的下拉切换到.
-支持预加载,加载当前也的前一个和后一个 Fragment.
+>1. 支持 ScrollView和其他布局的下拉切换到.
+* 支持预加载,加载当前也的前一个和后一个 Fragment.
 
 1.0.1更新内容;
- >增加了支持WebView 控件的支持.
- >增加 example 中两个实例.
- >美化了 example 例子
+ >1. 增加了支持WebView 控件的支持.
+* 增加 example 中两个实例.
+* 美化了 example 例子
  
 
 #end#
