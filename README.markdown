@@ -1,7 +1,12 @@
  #效果图先行:#
+好像大家挺喜欢这个控件的样子!!
 
 
-![pulltoNext.gif](http://upload-images.jianshu.io/upload_images/166866-59550ea4582a4a22.gif)
+![webView.gif](http://upload-images.jianshu.io/upload_images/166866-c9840dfc44752550.gif)
+
+![ScrollView.gif](http://upload-images.jianshu.io/upload_images/166866-2609a7f9c0d8f740.gif)
+
+![other.gif](http://upload-images.jianshu.io/upload_images/166866-3a9ed8d196dad787.gif)
 
 
 [github 地址直达](https://github.com/zzz40500/Android-PullToNextLayout)
@@ -106,5 +111,14 @@ DemoFragment 中的主要布局:
 
 DemoFragment  以一个 ScrollView 为根控件.也可以使用其他布局为跟控件.
 
+1.0 内容:
+>支持 ScrollView和其他布局的下拉切换到.
+支持预加载,加载当前也的前一个和后一个 Fragment.
+
+1.0.1更新内容;
+ >增加了支持WebView 控件的支持.
+ >增加 example 中两个实例.
+ >美化了 example 例子
+ 
 
 #end#
