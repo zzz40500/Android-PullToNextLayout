@@ -66,7 +66,6 @@ public class ScrollViewFragment extends Fragment {
 
         titleTV.setText(index+1+".0"+title);
         contentTv.setText(content);
-//        scrollView.pageScroll(ScrollView.FOCUS_UP);
 
 
         return  v;
@@ -75,8 +74,6 @@ public class ScrollViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        scrollView.pageScroll(ScrollView.FOCUS_UP);
-//        scrollView.scrollTo(0,0);
 
     }
 
@@ -88,8 +85,6 @@ public class ScrollViewFragment extends Fragment {
 
             if(scrollView!=null)
             scrollView.pageScroll(ScrollView.FOCUS_UP);
-        }else{
-
         }
     }
 }

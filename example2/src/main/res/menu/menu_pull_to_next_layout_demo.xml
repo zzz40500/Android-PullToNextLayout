@@ -7,11 +7,11 @@
         android:orderInCategory="100"
         app:showAsAction="always" />
     <item android:id="@+id/action_setSelection"
-        android:title="selection(1)"
+        android:title="setCurrentItem(1)"
         android:orderInCategory="100"
         app:showAsAction="always" />
     <item android:id="@+id/action_delete"
-        android:title="deleteCurrent"
+        android:title="deleteCurrentItem"
         android:orderInCategory="100"
         app:showAsAction="always" />
 

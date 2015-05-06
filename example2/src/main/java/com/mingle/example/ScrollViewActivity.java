@@ -43,10 +43,6 @@ public class ScrollViewActivity extends ActionBarActivity {
             list.add(new ScrollViewFragment(currentIndex++));
 
         }
-
-
-
-
         adapter=  new PullToNextAdapter(getSupportFragmentManager(), list);
         pullToNextLayout.setAdapter(adapter);
 
@@ -78,11 +74,7 @@ public class ScrollViewActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-//            pullToNextLayout.setCurrentItem(4);
-            return true;
-
-        }else if(id== R.id.action_addALL){
+         if(id== R.id.action_addALL){
             for (int i = 0; i < 5; i++) {
 
                 list.add(new ScrollViewFragment(currentIndex++));
@@ -92,7 +84,7 @@ public class ScrollViewActivity extends ActionBarActivity {
 
         }else if(id== R.id.action_setSelection){
 
-            pullToNextLayout.setCurrentItem(2);
+            pullToNextLayout.setCurrentItem(1);
 
         }else if(id== R.id.action_delete){
             pullToNextLayout.deleteCurrentItem();

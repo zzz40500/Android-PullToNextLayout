@@ -42,12 +42,6 @@ public class OtherActivity extends ActionBarActivity {
         list.add(new OtherFragment(1));
         list.add(new OtherFragment(2));
         list.add(new OtherFragment(3));
-        list.add(new OtherFragment(3));
-        list.add(new OtherFragment(3));
-        list.add(new OtherFragment(3));
-        list.add(new OtherFragment(3));
-        list.add(new OtherFragment(3));
-        list.add(new OtherFragment(3));
 
 
         pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
@@ -55,7 +49,7 @@ public class OtherActivity extends ActionBarActivity {
         pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override
             public void onSelectItem(int position, View view) {
-//                setTitle(names[position]);
+                setTitle(names[position]);
             }
         });
 
@@ -78,28 +72,7 @@ public class OtherActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-//            pullToNextLayout.setCurrentItem(4);
-            return true;
 
-        }else if(id== R.id.action_addALL){
-
-
-        }else if(id== R.id.action_setSelection){
-
-            pullToNextLayout.setCurrentItem(2);
-
-        }else if(id== R.id.action_delete){
-            pullToNextLayout.deleteCurrentItem();
-        }
-
-        if (id == android.R.id.home) {
-
-
-            this.finish();
-            return true;
-        }
         if (id == android.R.id.home) {
 
 

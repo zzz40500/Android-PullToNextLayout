@@ -85,7 +85,6 @@ public class PullToNextView extends LinearLayout {
 
     }
 
-    // 计算大小
     private void measureView(View child) {
         ViewGroup.LayoutParams p = child.getLayoutParams();
         if (p == null) {
@@ -125,10 +124,8 @@ public class PullToNextView extends LinearLayout {
     public void setContentView(ViewGroup view) {
 //       hiddenHeaderView();
         contentView = view;
-        //添加了内容控件.
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         addView(view, params);
-        //添加了脚部控件
         hiddenFootView();
         initContentAdapterView(contentView);
 
@@ -156,7 +153,6 @@ public class PullToNextView extends LinearLayout {
 
         mHeadViewHeight = mHeaderView.getMeasuredHeight();
         addView(mHeaderView);
-        //隐藏了头部
         setHeaderTopMargin(-mHeadViewHeight);
     }
 
@@ -451,12 +447,12 @@ public class PullToNextView extends LinearLayout {
 
 
             if (!isHashNext) {
-                footPromptTV.setText("没有更多信息");
+                footPromptTV.setText(R.string.ptn_no_more_data);
             } else if (newTopMargin < -3 * mHeadViewHeight) {
 
-                footPromptTV.setText("放手查看下一个");
+                footPromptTV.setText(R.string.ptn_release_to_next);
             } else {
-                footPromptTV.setText("上拉查看下一个");
+                footPromptTV.setText(R.string.ptn_pull_up_to_next);
 
             }
 
@@ -465,12 +461,12 @@ public class PullToNextView extends LinearLayout {
 
             //前一个
             if (!isHashPrevious) {
-                headPromptTV.setText("已经是第一个了");
+                headPromptTV.setText(R.string.ptn_the_first);
             } else if (newTopMargin > mHeadViewHeight) {
 
-                headPromptTV.setText("放手查看前一个");
+                headPromptTV.setText(R.string.ptn_release_to_previous);
             } else {
-                headPromptTV.setText("下拉查看前一个");
+                headPromptTV.setText(R.string.ptn_pull_down_to_previous);
 
             }
 

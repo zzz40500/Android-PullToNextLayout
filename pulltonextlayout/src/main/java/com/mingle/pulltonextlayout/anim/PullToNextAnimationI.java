@@ -13,7 +13,7 @@ public interface PullToNextAnimationI {
     public Animator getPullDownAnim(View showView,View dismissView);
 
     public Animator getPullUpAnim(View showView,View dismissView);
-    public Animator getDeleteItemDisMissAnimation(View view);
-    public Animator getDeleteItemShowAnimation(View view);
+    public Animator getDeleteItemAnim(View showView,View dismissView);
+
 
 }

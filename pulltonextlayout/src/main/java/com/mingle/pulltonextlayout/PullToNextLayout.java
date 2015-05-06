@@ -2,6 +2,7 @@ package com.mingle.pulltonextlayout;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -10,14 +11,13 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
 import com.mingle.pulltonextlayout.anim.PullToNextAnimationI;
 import com.mingle.pulltonextlayout.anim.SimpleAnimation;
 import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorSet;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -26,7 +26,6 @@ import java.util.List;
 public class PullToNextLayout extends FrameLayout {
 
 
-    private static final int ANIMATION_DURATION = 500;
 
     private boolean isAnimating;
 
@@ -39,6 +38,8 @@ public class PullToNextLayout extends FrameLayout {
     private DataSetObserver mDataSetObserver;
 
     private PullToNextAnimationI simpleAnimation = new SimpleAnimation();
+
+    private   int bgColor=getResources().getColor(R.color.bg);
 
 
     private PullToNextView.PullToNextI mPullToNextI = new PullToNextView.PullToNextI() {
@@ -55,30 +56,42 @@ public class PullToNextLayout extends FrameLayout {
 
     public PullToNextLayout(Context context) {
         super(context);
-        init();
+        init(null);
     }
 
     public PullToNextLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
     public PullToNextLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public PullToNextLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
+
+
+        if(attrs !=null){
+             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.PullToNextLayout);
+
+
+            bgColor = typedArray.getColor(R.styleable.PullToNextLayout_underLayoutColor, R.color.bg);
+
+
+            typedArray.recycle();
+        }
         currentPTE = newPullToNextView(R.id.contentFL1);
         previousPTE = newPullToNextView(R.id.contentFL2);
         nextPTE = newPullToNextView(R.id.contentFL3);
+        setUnderLayerBackground(bgColor);
     }
 
 
@@ -89,6 +102,23 @@ public class PullToNextLayout extends FrameLayout {
     public void setAdapter(PullToNextAdapter pullToNextAdapter) {
 
         this.setAdapter(pullToNextAdapter, 0);
+    }
+
+    public void setUnderLayerBackground(int bgColor){
+        this.setBackgroundColor(bgColor);
+
+        setPullToNextViewBackground(currentPTE,bgColor);
+        setPullToNextViewBackground(previousPTE,bgColor);
+        setPullToNextViewBackground(nextPTE,bgColor);
+
+
+    }
+
+    private void setPullToNextViewBackground( PullToNextEntity pte,int bgColor) {
+        if(null != pte.getPullToNextView()){
+            pte.getPullToNextView()
+                    .setBackgroundColor(bgColor);
+        }
     }
 
     public void setAdapter(PullToNextAdapter pullToNextAdapter, int currentIndex) {
@@ -123,7 +153,6 @@ public class PullToNextLayout extends FrameLayout {
             return;
         }
 
-
         removeView(currentPTE.getPullToNextView());
         removeView(nextPTE.getPullToNextView());
         removeView(previousPTE.getPullToNextView());
@@ -147,7 +176,6 @@ public class PullToNextLayout extends FrameLayout {
 
 
     private void invalidateView(int mCurItem) {
-
 
         mAdapter.getItem(mCurItem).setUserVisibleHint(true);
         mAdapter.getItem(mCurItem).setMenuVisibility(true);
@@ -198,15 +226,18 @@ public class PullToNextLayout extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setId(frameLayoutId);
         pullToNextView.setContentView(frameLayout);
-        pullToNextView.setBackgroundColor(getResources().getColor(R.color.bg));
+
         pullToNextView.setPullToNextI(mPullToNextI);
         pullToNextView.setTag(frameLayoutId);
         entity.setFrameId(frameLayoutId);
         entity.setPullToNextView(pullToNextView);
-//        entity.getPullToNextView().setBackgroundColor(getResources().getColor(android.R.color.white));
         return entity;
     }
 
+    @Override
+    public void setBackgroundColor(int color) {
+        super.setBackgroundColor(color);
+    }
 
     /**
      * 将pullToNextView 添加到 PullToNextLayout 控件中
@@ -299,6 +330,14 @@ public class PullToNextLayout extends FrameLayout {
         anim.start();
     }
 
+
+    public PullToNextAnimationI getSimpleAnimation() {
+        return simpleAnimation;
+    }
+
+    public void setSimpleAnimation(PullToNextAnimationI simpleAnimation) {
+        this.simpleAnimation = simpleAnimation;
+    }
 
     private void remove(PullToNextEntity pullToNextEntity) {
 
@@ -421,9 +460,10 @@ public class PullToNextLayout extends FrameLayout {
         }
         if (currentPTE.getPosition() == 0) {
             remove(previousPTE);
-            Animator in = simpleAnimation.getDeleteItemShowAnimation(nextPTE.getPullToNextView());
-            Animator out = simpleAnimation.getDeleteItemDisMissAnimation(currentPTE.getPullToNextView());
-            out.addListener(new Animator.AnimatorListener() {
+            Animator anim = simpleAnimation.getDeleteItemAnim(nextPTE.getPullToNextView(),currentPTE.getPullToNextView());
+
+
+            anim.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
                     isAnimating = true;
@@ -448,19 +488,17 @@ public class PullToNextLayout extends FrameLayout {
                 public void onAnimationRepeat(Animator animation) {
                 }
             });
-            AnimatorSet set = new AnimatorSet();
-            set.setInterpolator(new DecelerateInterpolator());
-            set.playTogether(out, in);
-            set.start();
+
+            anim.start();
 
 
         } else {
             remove(nextPTE);
-            Animator out = simpleAnimation.getDeleteItemDisMissAnimation(currentPTE.getPullToNextView());
+            Animator anim = simpleAnimation.getDeleteItemAnim(previousPTE.getPullToNextView(), currentPTE.getPullToNextView());
 
 
-            Animator in = simpleAnimation.getDeleteItemShowAnimation(previousPTE.getPullToNextView());
-            out.addListener(new Animator.AnimatorListener() {
+
+            anim.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
                     isAnimating = true;
@@ -472,7 +510,7 @@ public class PullToNextLayout extends FrameLayout {
                     mAdapter.remove(currentPTE.getPosition());
                     isAnimating = false;
                     mItemCount = mAdapter.getCount();
-                    PullToNextEntity temp = previousPTE;;
+                    PullToNextEntity temp = previousPTE;
 
                     previousPTE=currentPTE;
                     currentPTE=temp;
@@ -491,10 +529,8 @@ public class PullToNextLayout extends FrameLayout {
 
                 }
             });
-            AnimatorSet set = new AnimatorSet();
-            set.setInterpolator(new DecelerateInterpolator());
-            set.playTogether(out, in);
-            set.start();
+
+            anim.start();
 
         }
     }

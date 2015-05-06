@@ -39,14 +39,7 @@ public class PullToNextEntity {
     public boolean isAttach(){
 
 
-        if(pullToNextView  == null){
-            return  false;
-        }
-
-        if(pullToNextView.getParent() == null){
-            return  false;
-        }
-        return  true;
+        return pullToNextView != null && pullToNextView.getParent() != null;
 
     }
 

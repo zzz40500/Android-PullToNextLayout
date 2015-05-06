@@ -11,23 +11,20 @@ import java.util.List;
 /**
  * Created by zzz40500 on 15/3/21.
  */
-public  class PullToNextAdapter {
+public class PullToNextAdapter {
 
 
     List<Fragment> allList = null;
-
-
     private FragmentManager fm;
 
-
-    public PullToNextAdapter(Fragment fragment,List<Fragment> allList) {
+    public PullToNextAdapter(Fragment fragment, List<Fragment> allList) {
         this.allList = allList;
-       fm= fragment.getChildFragmentManager();
-
+        fm = fragment.getChildFragmentManager();
     }
-    public PullToNextAdapter(FragmentManager manager,List<Fragment> allList) {
+
+    public PullToNextAdapter(FragmentManager manager, List<Fragment> allList) {
         this.allList = allList;
-        fm=manager;
+        fm = manager;
 
     }
 
@@ -36,12 +33,9 @@ public  class PullToNextAdapter {
         return fm;
     }
 
-    public  int getCount(){
-        return  allList.size();
+    public int getCount() {
+        return allList.size();
     }
-
-
-
 
 
     public Fragment getItem(int arg0) {
@@ -49,14 +43,12 @@ public  class PullToNextAdapter {
     }
 
 
-    protected  void remove(int arg0){
+    protected void remove(int arg0) {
         allList.remove(arg0);
     }
 
 
-    private  DataSetObservable mDataSetObservable = new DataSetObservable();
-
-
+    private DataSetObservable mDataSetObservable = new DataSetObservable();
 
 
     public void registerDataSetObserver(DataSetObserver observer) {
@@ -71,7 +63,7 @@ public  class PullToNextAdapter {
         mDataSetObservable.notifyChanged();
     }
 
-    public void notifyDataSetInvalidated() {
-        mDataSetObservable.notifyInvalidated();
-    }
+//    public void notifyDataSetInvalidated() {
+//        mDataSetObservable.notifyInvalidated();
+//    }
 }

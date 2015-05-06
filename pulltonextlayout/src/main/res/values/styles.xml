@@ -11,7 +11,7 @@
     <color name="gray">#606060</color>
     <color name="bg">#dddddd</color>
     <style name="CommonTextAppearance_Small_Gray" parent="@android:style/TextAppearance">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
