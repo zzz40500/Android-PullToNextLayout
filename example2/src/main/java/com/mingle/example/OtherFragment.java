@@ -3,6 +3,7 @@ package com.mingle.example;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,8 @@ public class OtherFragment extends Fragment {
         // Inflate the layout for this fragment
 
 
+        Log.e(" onCreateView  "," "+index);
+
         View   v= inflater.inflate(R.layout.fragment_other, container, false);
 
         TextView nameTV= (TextView) v.findViewById(R.id.nameTV);
@@ -55,10 +58,32 @@ public class OtherFragment extends Fragment {
         birthdayTV.setText("出生日期: "+birthday[index]);
         imageView.setImageResource(imgRes[index]);
 
+        Log.e(" onCreateView  "," "+(getActivity()==null));
+
+
         v.setClickable(true);
 
         return  v;
     }
 
+    @Override
+    public void onResume() {
+        Log.e(" onResume  "," "+index);
+        super.onResume();
+    }
 
+
+    @Override
+    public void onDestroy() {
+        Log.e(" onDestroy  "," "+index);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.e(" onDestroyView  "," "+index);
+
+
+        super.onDestroyView();
+    }
 }

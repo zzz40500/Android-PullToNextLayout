@@ -21,6 +21,9 @@ public class ScrollViewActivity extends ActionBarActivity {
 
     private ArrayList<Fragment> list;
 
+    private int  currentIndex=0;
+    private PullToNextAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,17 +38,17 @@ public class ScrollViewActivity extends ActionBarActivity {
 
         list=new ArrayList<>();
 
-        list.add(new ScrollViewFragment(0));
-        list.add(new ScrollViewFragment(1));
-        list.add(new ScrollViewFragment(2));
-        list.add(new ScrollViewFragment(3));
-        list.add(new ScrollViewFragment(4));
-        list.add(new ScrollViewFragment(5));
-        list.add(new ScrollViewFragment(6));
-        list.add(new ScrollViewFragment(7));
+        for (int i = 0; i < 4; i++) {
+
+            list.add(new ScrollViewFragment(currentIndex++));
+
+        }
 
 
-        pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
+
+
+        adapter=  new PullToNextAdapter(getSupportFragmentManager(), list);
+        pullToNextLayout.setAdapter(adapter);
 
         pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override
@@ -63,7 +66,7 @@ public class ScrollViewActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_pull_to_next_layout_demo, menu);
+        getMenuInflater().inflate(R.menu.menu_pull_to_next_layout_demo, menu);
         return true;
     }
 
@@ -78,7 +81,23 @@ public class ScrollViewActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
 //            pullToNextLayout.setCurrentItem(4);
             return true;
+
+        }else if(id== R.id.action_addALL){
+            for (int i = 0; i < 5; i++) {
+
+                list.add(new ScrollViewFragment(currentIndex++));
+
+            }
+            adapter.notifyDataSetChanged();
+
+        }else if(id== R.id.action_setSelection){
+
+            pullToNextLayout.setCurrentItem(2);
+
+        }else if(id== R.id.action_delete){
+            pullToNextLayout.deleteCurrentItem();
         }
+
         if (id == android.R.id.home) {
 
 

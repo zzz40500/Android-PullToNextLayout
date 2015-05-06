@@ -1,6 +1,7 @@
 package com.mingle.example;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 public class OtherActivity extends ActionBarActivity {
 
     public PullToNextLayout pullToNextLayout;
+
+    private FragmentPagerAdapter ad;
 
     private ArrayList<Fragment> list;
     private  String[] names={"于文文","张钧甯","陈乔恩","贾青"};
@@ -39,7 +42,12 @@ public class OtherActivity extends ActionBarActivity {
         list.add(new OtherFragment(1));
         list.add(new OtherFragment(2));
         list.add(new OtherFragment(3));
-
+        list.add(new OtherFragment(3));
+        list.add(new OtherFragment(3));
+        list.add(new OtherFragment(3));
+        list.add(new OtherFragment(3));
+        list.add(new OtherFragment(3));
+        list.add(new OtherFragment(3));
 
 
         pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
@@ -47,11 +55,7 @@ public class OtherActivity extends ActionBarActivity {
         pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override
             public void onSelectItem(int position, View view) {
-
-
-
-
-                setTitle(names[position]);
+//                setTitle(names[position]);
             }
         });
 
@@ -77,6 +81,23 @@ public class OtherActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 //            pullToNextLayout.setCurrentItem(4);
+            return true;
+
+        }else if(id== R.id.action_addALL){
+
+
+        }else if(id== R.id.action_setSelection){
+
+            pullToNextLayout.setCurrentItem(2);
+
+        }else if(id== R.id.action_delete){
+            pullToNextLayout.deleteCurrentItem();
+        }
+
+        if (id == android.R.id.home) {
+
+
+            this.finish();
             return true;
         }
         if (id == android.R.id.home) {

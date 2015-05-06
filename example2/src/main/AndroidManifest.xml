@@ -30,6 +30,10 @@
             android:name=".OtherActivity"
             android:label="@string/title_activity_other" >
         </activity>
+        <activity
+            android:name=".ViewPagerActivity"
+            android:label="@string/title_activity_view_pager" >
+        </activity>
     </application>
 
 </manifest>

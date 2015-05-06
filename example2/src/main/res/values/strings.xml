@@ -9,4 +9,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_web_view">WebViewActivity</string>
     <string name="title_activity_other">OtherActivity</string>
+    <string name="title_activity_view_pager">ViewPagerActivity</string>
 </resources>

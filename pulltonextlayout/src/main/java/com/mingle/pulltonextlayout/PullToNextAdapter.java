@@ -1,5 +1,7 @@
 package com.mingle.pulltonextlayout;
 
+import android.database.DataSetObservable;
+import android.database.DataSetObserver;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -47,7 +49,29 @@ public  class PullToNextAdapter {
     }
 
 
+    protected  void remove(int arg0){
+        allList.remove(arg0);
+    }
+
+
+    private  DataSetObservable mDataSetObservable = new DataSetObservable();
 
 
 
+
+    public void registerDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.registerObserver(observer);
+    }
+
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.unregisterObserver(observer);
+    }
+
+    public void notifyDataSetChanged() {
+        mDataSetObservable.notifyChanged();
+    }
+
+    public void notifyDataSetInvalidated() {
+        mDataSetObservable.notifyInvalidated();
+    }
 }

@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.nineoldandroids.view.ViewHelper;
 
 
 /**
@@ -41,7 +42,6 @@ public class PullToNextView extends LinearLayout {
 
     /**
      * webView
-     *
      */
     private WebView mWebView;
 
@@ -79,7 +79,7 @@ public class PullToNextView extends LinearLayout {
      * init
      */
     private void init() {
-        // 需要设置成vertical
+
         setOrientation(LinearLayout.VERTICAL);
         hiddenHeaderView();
 
@@ -180,12 +180,10 @@ public class PullToNextView extends LinearLayout {
         if (contentView != null) {
 
 
-
             contentView.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Fragment f = fm.findFragmentByTag("position" + position);
-
 
 
                     FrameLayout frameLayout = (FrameLayout) contentView;
@@ -197,11 +195,8 @@ public class PullToNextView extends LinearLayout {
 
                     }
                 }
-            },20);
+            }, 20);
         }
-
-
-
 
 
     }
@@ -217,12 +212,10 @@ public class PullToNextView extends LinearLayout {
             if (o instanceof ScrollView) {
                 mScrollView = (ScrollView) o;
                 mScrollView.setOverScrollMode(OVER_SCROLL_NEVER);
-            }
-            else  if(o  instanceof  WebView){
-                mWebView= (WebView) o;
+            } else if (o instanceof WebView) {
+                mWebView = (WebView) o;
                 mWebView.setOverScrollMode(OVER_SCROLL_NEVER);
             }
-
 
 
             for (int i = 0; i < vp.getChildCount(); i++) {
@@ -367,6 +360,16 @@ public class PullToNextView extends LinearLayout {
         setHeaderTopMargin(-mHeadViewHeight);
         initContentView(fm, position);
 
+        ViewHelper.setAlpha(this, 1);
+        ViewHelper.setTranslationY(this, 0);
+        ViewHelper.setTranslationY(this, 0);
+        ViewHelper.setScaleX(this, 1);
+        ViewHelper.setScaleY(this, 1);
+        ViewHelper.setScrollX(this, 0);
+        ViewHelper.setScrollY(this, 0);
+        ViewHelper.setRotationX(this, 0);
+        ViewHelper.setRotationY(this, 0);
+
 
     }
 
@@ -396,7 +399,7 @@ public class PullToNextView extends LinearLayout {
                 mPullStateE = PullStateE.PULL_STATE_UP;
                 return true;
             }
-        } else if(mWebView  !=null){
+        } else if (mWebView != null) {
             if (deltaY > 12 && mWebView.getScrollY() == 0
                     ) {
                 //向下
@@ -404,10 +407,10 @@ public class PullToNextView extends LinearLayout {
 
                 return true;
 
-            }else if (deltaY < -12 &&
-                    (int)(mWebView.getContentHeight()*mWebView.getScale())-mWebView.getHeight()-mWebView.getScrollY( ) == 0
+            } else if (deltaY < -12 &&
+                    (int) (mWebView.getContentHeight() * mWebView.getScale()) - mWebView.getHeight() - mWebView.getScrollY() == 0
 
-                   ) {
+                    ) {
                 //向上
 
                 mPullStateE = PullStateE.PULL_STATE_UP;
@@ -415,7 +418,7 @@ public class PullToNextView extends LinearLayout {
 
             }
 
-        }else{
+        } else {
             return true;
         }
 

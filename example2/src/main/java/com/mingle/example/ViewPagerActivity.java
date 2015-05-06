@@ -1,49 +1,38 @@
 package com.mingle.example;
 
-import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
+import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class ViewPagerActivity extends ActionBarActivity {
 
-
-
-
+    private ViewPager vp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view_pager);
+        vp= (ViewPager) findViewById(R.id.vp);
+        ArrayList<Fragment> list = new ArrayList<>();
 
+        list.add(new OtherFragment(0));
+        list.add(new OtherFragment(1));
+        list.add(new OtherFragment(2));
+        list.add(new OtherFragment(3));
+        vp.setAdapter(new ViewpagerAdapter(getSupportFragmentManager(),list,null));
     }
 
-
-    public void onClick(View view){
-
-
-       startActivity(new Intent(this,ScrollViewActivity.class));
-
-    }
-    public void onClick2(View view){
-
-       startActivity(new Intent(this,WebViewActivity.class));
-
-    }
-    public void onClick3(View view){
-
-       startActivity(new Intent(this,OtherActivity.class));
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_view_pager, menu);
         return true;
     }
 

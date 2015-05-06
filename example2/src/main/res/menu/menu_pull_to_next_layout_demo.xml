@@ -2,6 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mingle.example.ScrollViewActivity">
-    <item android:id="@+id/action_settings" android:title="setCurrentItem(5)"
-        android:orderInCategory="100" app:showAsAction="always" />
+    <item android:id="@+id/action_addALL"
+        android:title="add(5)"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_setSelection"
+        android:title="selection(1)"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_delete"
+        android:title="deleteCurrent"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
 </menu>

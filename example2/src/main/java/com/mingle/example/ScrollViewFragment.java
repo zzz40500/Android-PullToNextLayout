@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 
@@ -46,6 +47,8 @@ public class ScrollViewFragment extends Fragment {
 
 
 
+    private ScrollView scrollView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,16 +61,35 @@ public class ScrollViewFragment extends Fragment {
 
         TextView titleTV= (TextView) v.findViewById(R.id.titleTV);
         TextView contentTv= (TextView) v.findViewById(R.id.textView);
-
+        scrollView= (ScrollView) v.findViewById(R.id.scrollView);
 
 
         titleTV.setText(index+1+".0"+title);
         contentTv.setText(content);
-
+//        scrollView.pageScroll(ScrollView.FOCUS_UP);
 
 
         return  v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+//        scrollView.pageScroll(ScrollView.FOCUS_UP);
+//        scrollView.scrollTo(0,0);
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(!isVisibleToUser){
+
+            if(scrollView!=null)
+            scrollView.pageScroll(ScrollView.FOCUS_UP);
+        }else{
+
+        }
+    }
 }
