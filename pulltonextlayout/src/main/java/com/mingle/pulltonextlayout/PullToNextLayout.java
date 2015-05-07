@@ -38,7 +38,7 @@ public class PullToNextLayout extends FrameLayout {
 
     private PullToNextAnimationI simpleAnimation = new SimpleAnimation();
 
-    private   int bgColor=getResources().getColor(R.color.bg);
+    private   int bgColor;
 
 
     private PullToNextView.PullToNextI mPullToNextI = new PullToNextView.PullToNextI() {
@@ -82,10 +82,12 @@ public class PullToNextLayout extends FrameLayout {
              TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.PullToNextLayout);
 
 
-            bgColor = typedArray.getColor(R.styleable.PullToNextLayout_underLayoutColor, R.color.bg);
+            bgColor = typedArray.getColor(R.styleable.PullToNextLayout_underLayoutColor, getResources().getColor(R.color.bg));
 
 
             typedArray.recycle();
+        }else{
+            bgColor=getResources().getColor(R.color.bg);
         }
         currentPTE = newPullToNextView(R.id.contentFL1);
         previousPTE = newPullToNextView(R.id.contentFL2);

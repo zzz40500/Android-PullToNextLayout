@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/zzz40500/Documents/myGithub/58loadingPro/Android-PullToNextLayout/example2/build/intermediates/exploded-aar/Android-PullToNextLayout/pulltonextlayout/unspecified/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c2ffe6c532ac450b83a5a089767add89542d9c8f">
-        <dex dex="/Users/zzz40500/Documents/myGithub/58loadingPro/Android-PullToNextLayout/example2/build/intermediates/pre-dexed/debug/classes-0c9bda02d62865e4e5d2845ca80377b69c02e44c.jar" />
-    </item>
-    <item
         jar="/Users/zzz40500/Documents/myGithub/58loadingPro/Android-PullToNextLayout/example2/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
         <dex dex="/Users/zzz40500/Documents/myGithub/58loadingPro/Android-PullToNextLayout/example2/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-bfb3be20fcb9d6a22b00f01c0ad847a9ad9354c3.jar" />
+    </item>
+    <item
+        jar="/Users/zzz40500/Documents/myGithub/58loadingPro/Android-PullToNextLayout/example2/build/intermediates/exploded-aar/com.mingle/pulltonextlayout/1.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b266a01558482ae8ca8b0c92cc6e52dfaa80b836">
+        <dex dex="/Users/zzz40500/Documents/myGithub/58loadingPro/Android-PullToNextLayout/example2/build/intermediates/pre-dexed/debug/classes-47fc8f41674c7e435cc428d01677d1e6b082db13.jar" />
     </item>
     <item
         jar="/Users/zzz40500/Documents/myGithub/58loadingPro/Android-PullToNextLayout/example2/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"

@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-version = "1.2"
+version = "1.3"
 // 根节点添加
 
 android {
@@ -39,7 +39,7 @@ install {
         pom {
             project {
                 packaging 'aar'
-                name 'pullToNextLayout'
+                name 'pullToNextLayout '
                 url siteUrl
                 licenses {
                     license {
@@ -94,7 +94,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "pullToNextLayout"
+        name = "headsUp"
         // #CONFIG# project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl
