@@ -17,7 +17,6 @@ import com.mingle.pulltonextlayout.anim.PullToNextAnimationI;
 import com.mingle.pulltonextlayout.anim.SimpleAnimation;
 import com.nineoldandroids.animation.Animator;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 /**
