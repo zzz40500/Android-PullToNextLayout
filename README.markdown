@@ -12,9 +12,16 @@
 [github 地址直达](https://github.com/zzz40500/Android-PullToNextLayout)
 
 #usage:#
+android studio 引用:
+~~~
+    compile 'com.mingle:pulltonextlayout:1.2'
+~~~
+
 activity 的布局
 ~~~
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -22,10 +29,13 @@ activity 的布局
 
     <com.mingle.pulltonextlayout.PullToNextLayout
         android:id="@+id/pullToNextLayout"
+        app:underLayoutColor="@color/bg"
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
 
 </RelativeLayout>
+
 
 ~~~
 
@@ -41,9 +51,7 @@ java 代码中引用使用:
         list.add(new ScrollViewFragment(2));
         list.add(new ScrollViewFragment(3));
         list.add(new ScrollViewFragment(4));
-        list.add(new ScrollViewFragment(5));
-        list.add(new ScrollViewFragment(6));
-        list.add(new ScrollViewFragment(7));
+ 
 //设置适配器
         pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
 
@@ -121,6 +129,14 @@ DemoFragment  以一个 ScrollView 为根控件.也可以使用其他布局为�
  >1. 增加了支持WebView 控件的支持.
 * 增加 example 中两个实例.
 * 美化了 example 例子
+
+1.2更新内容;
+ >1.     PullToNextAdapter.notifyDataSetChanged()->   通知Fragment集合有变
+* pullToNextLayout.setCurrentItem(2);-> 设置当前页
+*  pullToNextLayout.deleteCurrentItem();-> 删除当前页,有动画
+*  增加了 app:underLayoutColor="@color/bg" 增加了底色属性,一定要加.
+
+
  
 
 #end#
