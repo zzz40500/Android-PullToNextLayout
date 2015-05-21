@@ -12,7 +12,10 @@
 [github 地址直达](https://github.com/zzz40500/Android-PullToNextLayout)
 
 #usage:#
-
+android studio 引用:
+~~~
+  compile 'com.mingle.zzz40500:pulltonextlayout:1.2.1'
+~~~
 
 activity 的布局
 ~~~
