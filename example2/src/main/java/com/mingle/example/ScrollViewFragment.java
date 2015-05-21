@@ -3,6 +3,7 @@ package com.mingle.example;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +41,7 @@ public class ScrollViewFragment extends Fragment {
     private int  index;
     public ScrollViewFragment(int index) {
 
-      this.index=index;
+        this.index=index;
     }
 
 
@@ -48,6 +49,8 @@ public class ScrollViewFragment extends Fragment {
 
 
     private ScrollView scrollView;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +70,7 @@ public class ScrollViewFragment extends Fragment {
         titleTV.setText(index+1+".0"+title);
         contentTv.setText(content);
 
+        Log.e(TAG,"onCreateView "+index);
 
         return  v;
     }
@@ -74,6 +78,34 @@ public class ScrollViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        Log.e(TAG,"onResume "+index);
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.e(TAG,"onDestroyView "+index);
+    }
+
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG,"onDestroy "+index);
+    }
+
+    public static final String TAG="ScrollViewFragment";
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Log.e(TAG,"onCreate "+index);
+
+
 
     }
 
@@ -84,7 +116,7 @@ public class ScrollViewFragment extends Fragment {
         if(!isVisibleToUser){
 
             if(scrollView!=null)
-            scrollView.pageScroll(ScrollView.FOCUS_UP);
+                scrollView.pageScroll(ScrollView.FOCUS_UP);
         }
     }
 }

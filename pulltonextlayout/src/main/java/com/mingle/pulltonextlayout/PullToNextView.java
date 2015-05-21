@@ -445,7 +445,6 @@ public class PullToNextView extends LinearLayout {
         if (newTopMargin < -mHeadViewHeight) {
             //下一个
 
-
             if (!isHashNext) {
                 footPromptTV.setText(R.string.ptn_no_more_data);
             } else if (newTopMargin < -3 * mHeadViewHeight) {

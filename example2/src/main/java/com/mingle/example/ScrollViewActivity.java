@@ -3,7 +3,6 @@ package com.mingle.example;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,11 +37,11 @@ public class ScrollViewActivity extends ActionBarActivity {
 
         list=new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
-
-            list.add(new ScrollViewFragment(currentIndex++));
-
-        }
+//        for (int i = 0; i < 4; i++) {
+//
+//            list.add(new ScrollViewFragment(currentIndex++));
+//
+//        }
         adapter=  new PullToNextAdapter(getSupportFragmentManager(), list);
         pullToNextLayout.setAdapter(adapter);
 
@@ -74,13 +73,24 @@ public class ScrollViewActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-         if(id== R.id.action_addALL){
+        if(id== R.id.action_addALL){
+
+//
+
+
             for (int i = 0; i < 5; i++) {
 
-                list.add(new ScrollViewFragment(currentIndex++));
+//                list.add(new ScrollViewFragment(currentIndex++));
+                adapter.addItem(new ScrollViewFragment(currentIndex++));
 
             }
-            adapter.notifyDataSetChanged();
+//            adapter.notifyDataSetChanged();
+
+
+
+
+
+//             pullToNextLayout.setAdapter( new PullToNextAdapter(getSupportFragmentManager(), list));
 
         }else if(id== R.id.action_setSelection){
 

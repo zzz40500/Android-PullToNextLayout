@@ -1,11 +1,13 @@
 package com.mingle.pulltonextlayout;
 
-import android.database.DataSetObservable;
-import android.database.DataSetObserver;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 
+import com.mingle.pulltonextlayout.observable.PullToNextDataObserver;
+import com.mingle.pulltonextlayout.observable.PullToNextDataSetObservable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,12 +20,23 @@ public class PullToNextAdapter {
     private FragmentManager fm;
 
     public PullToNextAdapter(Fragment fragment, List<Fragment> allList) {
-        this.allList = allList;
+        if(null  == allList){
+            this.allList=new ArrayList<>();
+        }else {
+            this.allList = allList;
+        }
         fm = fragment.getChildFragmentManager();
     }
 
     public PullToNextAdapter(FragmentManager manager, List<Fragment> allList) {
-        this.allList = allList;
+
+
+
+        if(null  == allList){
+            this.allList=new ArrayList<>();
+        }else {
+            this.allList = allList;
+        }
         fm = manager;
 
     }
@@ -48,14 +61,14 @@ public class PullToNextAdapter {
     }
 
 
-    private DataSetObservable mDataSetObservable = new DataSetObservable();
+    private PullToNextDataSetObservable mDataSetObservable = new PullToNextDataSetObservable();
 
 
-    public void registerDataSetObserver(DataSetObserver observer) {
+    public void registerDataSetObserver(PullToNextDataObserver observer) {
         mDataSetObservable.registerObserver(observer);
     }
 
-    public void unregisterDataSetObserver(DataSetObserver observer) {
+    public void unregisterDataSetObserver(PullToNextDataObserver observer) {
         mDataSetObservable.unregisterObserver(observer);
     }
 
@@ -63,7 +76,21 @@ public class PullToNextAdapter {
         mDataSetObservable.notifyChanged();
     }
 
-//    public void notifyDataSetInvalidated() {
-//        mDataSetObservable.notifyInvalidated();
-//    }
+    public void notifyDataSetInvalidated() {
+        mDataSetObservable.notifyInvalidated();
+    }
+
+
+    public void addItem(Fragment f){
+        this.allList.add(f);
+        mDataSetObservable.notifyNewData();
+
+    }
+
+    public void addAllItem(List<Fragment> list){
+
+        this.allList.addAll(list);
+        mDataSetObservable.notifyNewData();
+
+    }
 }

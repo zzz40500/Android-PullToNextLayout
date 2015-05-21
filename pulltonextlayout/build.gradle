@@ -13,7 +13,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.2.2"
     }
     buildTypes {
         release {
@@ -24,9 +24,9 @@ android {
 }
 
 dependencies {
-
-    compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.android.support:support-v4:22.1.1'
+    
 }
 def siteUrl = 'https://github.com/zzz40500/Android-PullToNextLayout'    // project homepage
 def gitUrl = 'https://github.com/zzz40500/Android-PullToNextLayout.git' // project git
