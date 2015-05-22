@@ -1,7 +1,4 @@
- #效果图先行:#
-好像大家挺喜欢这个控件的样子!!
-
-
+  #效果图先行:#
 ![webView.gif](http://upload-images.jianshu.io/upload_images/166866-c9840dfc44752550.gif)
 
 ![ScrollView.gif](http://upload-images.jianshu.io/upload_images/166866-2609a7f9c0d8f740.gif)
@@ -10,12 +7,14 @@
 
 
 [github 地址直达](https://github.com/zzz40500/Android-PullToNextLayout)
-
+##更新至1.2.1##
 #usage:#
+
 android studio 引用:
 ~~~
   compile 'com.mingle.zzz40500:pulltonextlayout:1.2.1'
 ~~~
+
 
 activity 的布局
 ~~~
@@ -54,7 +53,7 @@ java 代码中引用使用:
  
 //设置适配器
         pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
-
+//设置切换监听
        pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override
             public void onSelectItem(int position, View view) {
@@ -121,20 +120,24 @@ DemoFragment 中的主要布局:
 
 DemoFragment  以一个 ScrollView 为根控件.也可以使用其他布局为跟控件.
 
-1.0 内容:
->1. 支持 ScrollView和其他布局的下拉切换到.
-* 支持预加载,加载当前也的前一个和后一个 Fragment.
 
-1.0.1更新内容;
- >1. 增加了支持WebView 控件的支持.
-* 增加 example 中两个实例.
-* 美化了 example 例子
+1.2.1 内容:
+>1. 控件支持ScrollView ,WebView 组件控件内滚动;
+* 支持gradle 方式加入;
+* 支持预加载,逻辑类似ViewPager,即预先加载当前页的前一个和下一个;
 
-1.2更新内容;
- >1.     PullToNextAdapter.notifyDataSetChanged()->   通知Fragment集合有变
-* pullToNextLayout.setCurrentItem(2);-> 设置当前页
-*  pullToNextLayout.deleteCurrentItem();-> 删除当前页,有动画
-*  增加了 app:underLayoutColor="@color/bg" 增加了底色属性,一定要加.
+
+
+PullToNextAdapter 方法:
+
+
+>1. `notifyDataSetChanged()` :通知数据源有变,会更新所有的Fragments ,当前界面会重新走一遍生命周期.
+* `addItem(Fragment f)`: 添加一个Fragment 到数据源的末端,当前界面不会重新走一遍生命周期.
+* `addAllItem(List<Fragment > list)`:添加Fragment列表到数据源的末端,当前界面不会重新走一遍生命周期
+
+
+
+
 
 
  
