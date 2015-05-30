@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.mingle.pulltonextlayout.OnItemSelectListener;
-import com.mingle.pulltonextlayout.PullToNextAdapter;
+import com.mingle.pulltonextlayout.adapter.PullToNextFragmentAdapter;
 import com.mingle.pulltonextlayout.PullToNextLayout;
 
 import java.util.ArrayList;
@@ -36,21 +36,21 @@ public class WebViewActivity extends ActionBarActivity {
 
         list=new ArrayList<>();
 
-        list.add(new WebViewFragment(0));
-        list.add(new WebViewFragment(1));
-        list.add(new WebViewFragment(2));
-        list.add(new WebViewFragment(3));
-        list.add(new WebViewFragment(4));
-        list.add(new WebViewFragment(5));
-        list.add(new WebViewFragment(6));
-        list.add(new WebViewFragment(7));
-        list.add(new WebViewFragment(8));
+        list.add( WebViewFragment.newInstant(0));
+        list.add( WebViewFragment.newInstant(1));
+        list.add( WebViewFragment.newInstant(2));
+        list.add( WebViewFragment.newInstant(3));
+        list.add( WebViewFragment.newInstant(4));
+        list.add( WebViewFragment.newInstant(5));
+        list.add( WebViewFragment.newInstant(6));
+        list.add( WebViewFragment.newInstant(7));
+        list.add( WebViewFragment.newInstant(8));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
+        pullToNextLayout.setAdapter(new PullToNextFragmentAdapter(getSupportFragmentManager(), list));
 
         pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override

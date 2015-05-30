@@ -1,27 +1,25 @@
-package com.mingle.example;
+package com.mingle.example.model;
 
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.content.Context;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.mingle.example.R;
+import com.mingle.pulltonextlayout.model.PullToNextModel;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass.
+ * Created by zzz40500 on 15/5/30.
  */
-public class ScrollViewFragment extends Fragment {
+public class ScrollViewModel extends PullToNextModel {
 
 
 
+    private String TAG="ScrollViewModel";
 
     String title=" 谷歌仍是毕业生心目中的最佳雇主";
+    private ScrollView scrollView;
 
     String content="    网易科技讯 3月27日消息，调研公司Universum Global发布最新调查报告称，谷歌仍是计算机科学专业大学生心目中的最佳雇主。\n" +
             "\n" +
@@ -38,85 +36,66 @@ public class ScrollViewFragment extends Fragment {
             "因此，雇主发现，使用向求职者施压，威胁2天内不回复就取消offer的招聘策略已经没以前那么有效果了。（思远）";
 
 
-    private int  index;
-    public ScrollViewFragment(int index) {
 
+    private int index;
+    public ScrollViewModel(int index){
         this.index=index;
     }
 
-
-
-
-
-    private ScrollView scrollView;
-
-
+    @Override
+    public void onCreate(Context context) {
+        super.onCreate(context);
+        Log.e(TAG,"onCreate"+"   "+index);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public int getLayoutViewId() {
+        return R.layout.fragment_scrollview;
+    }
 
-
-        View   v= inflater.inflate(R.layout.test_content, container, false);
-
-
+    @Override
+    public void onBindView(View v) {
 
         TextView titleTV= (TextView) v.findViewById(R.id.titleTV);
         TextView contentTv= (TextView) v.findViewById(R.id.textView);
-        scrollView= (ScrollView) v.findViewById(R.id.scrollView);
-
-
+        scrollView = (ScrollView) v.findViewById(R.id.scrollView);
         titleTV.setText(index+1+".0"+title);
         contentTv.setText(content);
-
-        Log.e(TAG,"onCreateView "+index);
-
-        return  v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        Log.e(TAG,"onResume "+index);
+        Log.e(TAG, "onBindView"+"   "+index);
 
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.e(TAG,"onDestroyView "+index);
-    }
-
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG,"onDestroy "+index);
-    }
-
-    public static final String TAG="ScrollViewFragment";
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Log.e(TAG,"onCreate "+index);
-
-
-
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if(!isVisibleToUser){
-
-            if(scrollView!=null)
-                scrollView.pageScroll(ScrollView.FOCUS_UP);
+    public void onResumeView(View view) {
+        super.onResumeView(view);
+        if(scrollView!=null){
+            scrollView.pageScroll(ScrollView.FOCUS_UP);
         }
+        Log.e(TAG, "onResumeView"+"   "+index);
     }
+
+
+
+    @Override
+    public void onUnBindView(View view) {
+        super.onUnBindView(view);
+        Log.e(TAG, "onUnBindView"+"   "+index);
+    }
+    @Override
+    public void onPauseView(View view) {
+        super.onPauseView(view);
+        Log.e(TAG, "onPauseView"+"   "+index);
+    }
+    @Override
+    public void setUserVisibleHint(boolean userVisibleHint) {
+        super.setUserVisibleHint(userVisibleHint);
+
+        if(userVisibleHint){
+
+
+        }
+        Log.e(TAG, "userVisibleHint" + userVisibleHint+"   " + index);
+    }
+
+
 }

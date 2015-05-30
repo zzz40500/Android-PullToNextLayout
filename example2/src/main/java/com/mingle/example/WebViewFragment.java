@@ -25,19 +25,30 @@ public class WebViewFragment extends Fragment {
 
 
     private int  index;
-    public WebViewFragment(int index) {
+    public WebViewFragment( ) {
 
-      this.index=index;
     }
 
 
+    public static WebViewFragment newInstant(int index){
+        WebViewFragment webViewFragment=new WebViewFragment();
 
+        Bundle bundle=new Bundle();
+        bundle.putInt("index", index);
+
+
+        webViewFragment.setArguments(bundle);
+        return  webViewFragment;
+
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        index=  getArguments().getInt("index");
 
         View   v= inflater.inflate(R.layout.fragment_web_view, container, false);
 
@@ -47,7 +58,6 @@ public class WebViewFragment extends Fragment {
 
         webView.loadUrl(urls[index]);
         webView.setWebChromeClient(new WebChromeClient());
-//        webView.getSettings().setJavaScriptEnabled(true);
 
         return  v;
     }

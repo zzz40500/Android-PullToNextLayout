@@ -1,23 +1,21 @@
 package com.mingle.pulltonextlayout;
 
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 
 
@@ -64,6 +62,7 @@ public class PullToNextView extends LinearLayout {
         init();
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public PullToNextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
@@ -122,7 +121,6 @@ public class PullToNextView extends LinearLayout {
     private TextView footPromptTV;
 
     public void setContentView(ViewGroup view) {
-//       hiddenHeaderView();
         contentView = view;
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         addView(view, params);
@@ -150,7 +148,6 @@ public class PullToNextView extends LinearLayout {
         measureView(mHeaderView);
         headPromptTV = (TextView) mHeaderView.findViewById(R.id.promptTV);
 
-
         mHeadViewHeight = mHeaderView.getMeasuredHeight();
         addView(mHeaderView);
         setHeaderTopMargin(-mHeadViewHeight);
@@ -170,24 +167,21 @@ public class PullToNextView extends LinearLayout {
     }
 
 
-    public void initContentView(final FragmentManager fm, final int position) {
+    public void initContentView(final BaseAdapter adapter, final int position) {
 
 
-        if (contentView != null) {
+
+
+        if (contentView != null ) {
 
 
             contentView.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Fragment f = fm.findFragmentByTag("position" + position);
 
 
-                    FrameLayout frameLayout = (FrameLayout) contentView;
-
-
-                    ViewGroup v = (ViewGroup) frameLayout.getRootView();
-                    if (f != null) {
-                        a(f.getView());
+                    if (adapter.getContentView(position) != null) {
+                        a(adapter.getContentView(position) );
 
                     }
                 }
@@ -281,9 +275,7 @@ public class PullToNextView extends LinearLayout {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // if (mLock) {
-        // return true;
-        // }
+
         int y = (int) event.getRawY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -352,9 +344,12 @@ public class PullToNextView extends LinearLayout {
     }
 
 
-    public void reset(FragmentManager fm, int position) {
+    public void reset(BaseAdapter adapter, int position) {
         setHeaderTopMargin(-mHeadViewHeight);
-        initContentView(fm, position);
+        initContentView(adapter, position);
+        mScrollView=null;
+        mWebView=null;
+        Log.e("reset","position "+position);
 
         ViewHelper.setAlpha(this, 1);
         ViewHelper.setTranslationY(this, 0);

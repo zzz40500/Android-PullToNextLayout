@@ -1,12 +1,14 @@
 package com.mingle.example;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.mingle.example.model.OtherModelActivity;
+import com.mingle.example.model.ScrollViewModelActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -25,8 +27,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void onClick(View view){
 
-
-       startActivity(new Intent(this,ScrollViewActivity.class));
+       startActivity(new Intent(this,ScrollViewModelActivity.class));
 
     }
     public void onClick2(View view){
@@ -36,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
     }
     public void onClick3(View view){
 
-       startActivity(new Intent(this,OtherActivity.class));
+       startActivity(new Intent(this,OtherModelActivity.class));
 
     }
 

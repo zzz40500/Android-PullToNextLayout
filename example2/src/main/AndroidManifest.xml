@@ -19,21 +19,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScrollViewActivity"
-            android:label="@string/title_activity_pull_to_next_layout_demo" >
-        </activity>
-        <activity
             android:name=".WebViewActivity"
             android:label="@string/title_activity_web_view" >
         </activity>
         <activity
-            android:name=".OtherActivity"
+            android:name=".model.OtherModelActivity"
             android:label="@string/title_activity_other" >
         </activity>
         <activity
-            android:name=".ViewPagerActivity"
-            android:label="@string/title_activity_view_pager" >
+            android:name=".model.ScrollViewModelActivity"
+            android:label="@string/title_activity_other" >
         </activity>
+
     </application>
 
 </manifest>

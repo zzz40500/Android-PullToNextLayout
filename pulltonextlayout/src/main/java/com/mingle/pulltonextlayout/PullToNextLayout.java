@@ -4,8 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,10 +12,9 @@ import android.widget.FrameLayout;
 
 import com.mingle.pulltonextlayout.anim.PullToNextAnimationI;
 import com.mingle.pulltonextlayout.anim.SimpleAnimation;
+import com.mingle.pulltonextlayout.base.SimpleAnimatorListener;
 import com.mingle.pulltonextlayout.observable.PullToNextDataObserver;
 import com.nineoldandroids.animation.Animator;
-
-import java.util.List;
 
 /**
  * Created by zzz40500 on 15/3/21.
@@ -29,7 +26,7 @@ public class PullToNextLayout extends FrameLayout {
 
     private int mItemCount = 0;
 
-    private PullToNextAdapter mAdapter;
+    private BaseAdapter mAdapter;
 
     private OnItemSelectListener mOnItemSelectListener;
 
@@ -100,10 +97,11 @@ public class PullToNextLayout extends FrameLayout {
     private PullToNextEntity previousPTE;
     private PullToNextEntity nextPTE;
 
-    public void setAdapter(PullToNextAdapter pullToNextAdapter) {
+    public void setAdapter(BaseAdapter pullToNextFragmentAdapter) {
 
-        this.setAdapter(pullToNextAdapter, 0);
+        this.setAdapter(pullToNextFragmentAdapter, 0);
     }
+
 
     public void setUnderLayerBackground(int bgColor) {
         this.setBackgroundColor(bgColor);
@@ -119,34 +117,35 @@ public class PullToNextLayout extends FrameLayout {
         }
     }
 
-    public void setAdapter(PullToNextAdapter pullToNextAdapter, int currentIndex) {
-        if (mAdapter != null && mDataSetObserver != null) {
-            cleanAlFragment();
+    public void setAdapter(BaseAdapter adapter, int currentIndex) {
+
+        if (mAdapter != null && mDataSetObserver != null && mAdapter != adapter ) {
+
+            mAdapter.cleanAll();
             mAdapter.unregisterDataSetObserver(mDataSetObserver);
         }
 
-        if (null == pullToNextAdapter) {
+        if (null == adapter) {
             return;
         }
         if (currentIndex < 0) {
             currentIndex = 0;
 
-        } else if (currentIndex >= pullToNextAdapter.getCount()) {
-            currentIndex = pullToNextAdapter.getCount() - 1;
+        } else if (currentIndex >= adapter.getCount()) {
+            currentIndex = adapter.getCount() - 1;
         }
         removeAllViews();
 
-        this.mAdapter = pullToNextAdapter;
+        this.mAdapter = adapter;
 
-        mItemCount = pullToNextAdapter.getCount();
+        mItemCount = adapter.getCount();
 
         mDataSetObserver = new PUllToNextDataSetObservable();
         mAdapter.registerDataSetObserver(mDataSetObserver);
-        currentPTE.setPosition(currentIndex);
 
 
         if (mAdapter.getCount() > 0) {
-            addPullToNextView(0, currentPTE);
+            addPullToNextView(0, currentPTE,currentIndex);
             invalidateView(currentIndex);
         }
     }
@@ -160,66 +159,32 @@ public class PullToNextLayout extends FrameLayout {
         removeView(currentPTE.getPullToNextView());
         removeView(nextPTE.getPullToNextView());
         removeView(previousPTE.getPullToNextView());
-        cleanAlFragment();
+        mAdapter.cleanAll();
         setAdapter(mAdapter, i);
 
     }
 
-    private void cleanAlFragment() {
-        List<Fragment> list = mAdapter.getFm().getFragments();
-        if (list == null || list.size() == 0) {
-            return;
-        }
-
-        FragmentTransaction transaction = mAdapter.getFm().beginTransaction();
-
-
-        for (int j = 0; j < list.size(); j++) {
-            Fragment fragment = list.get(j);
-            if (fragment != null) {
-                transaction.remove(list.get(j));
-            }
-        }
-        transaction.commitAllowingStateLoss();
-        if (null != mAdapter.getFm()) {
-            mAdapter.getFm().executePendingTransactions();
-        }
-
-    }
 
 
     private void invalidateView(int mCurItem) {
 
-        mAdapter.getItem(mCurItem).setUserVisibleHint(true);
-        mAdapter.getItem(mCurItem).setMenuVisibility(true);
-
+        mAdapter.setOnItemVisibility(mCurItem, true);
         if (mCurItem - 1 >= 0) {
-
-
-            previousPTE.setPosition(mCurItem - 1);
-            addPullToNextView(0, previousPTE);
-            previousPTE.reset(mAdapter.getFm());
-
-
-            if (mAdapter.getItem(mCurItem - 1).getUserVisibleHint()) {
-                mAdapter.getItem(mCurItem - 1).setUserVisibleHint(false);
-                mAdapter.getItem(mCurItem - 1).setMenuVisibility(false);
-            }
+            addPullToNextView(0, previousPTE, mCurItem - 1);
+            mAdapter.setOnItemVisibility(mCurItem - 1, false);
+            previousPTE.reset(mAdapter);
+        }else{
+            previousPTE.setPosition(-1);
         }
         if (mCurItem + 1 >= 0 && mCurItem + 1 < mAdapter.getCount()) {
 
-
-            nextPTE.setPosition(mCurItem + 1);
-            nextPTE.reset(mAdapter.getFm());
-
-            addPullToNextView(0, nextPTE);
-            if (mAdapter.getItem(mCurItem + 1).getUserVisibleHint()) {
-                mAdapter.getItem(mCurItem + 1).setUserVisibleHint(false);
-                mAdapter.getItem(mCurItem + 1).setMenuVisibility(false);
-            }
-
+            addPullToNextView(0, nextPTE,mCurItem + 1);
+            mAdapter.setOnItemVisibility(mCurItem + 1, false);
+            nextPTE.reset(mAdapter);
+        }else{
+            nextPTE.setPosition(-1);
         }
-        currentPTE.reset(mAdapter.getFm());
+        currentPTE.reset(mAdapter);
         if (null != mOnItemSelectListener) {
             mOnItemSelectListener.onSelectItem(currentPTE.getPosition(), currentPTE.getPullToNextView());
         }
@@ -239,13 +204,11 @@ public class PullToNextLayout extends FrameLayout {
         PullToNextEntity entity = new PullToNextEntity();
         PullToNextView pullToNextView = new PullToNextView(getContext());
         FrameLayout frameLayout = new FrameLayout(getContext());
-
         frameLayout.setId(frameLayoutId);
         pullToNextView.setContentView(frameLayout);
-
         pullToNextView.setPullToNextI(mPullToNextI);
         pullToNextView.setTag(frameLayoutId);
-        entity.setFrameId(frameLayoutId);
+        entity.setContentId(frameLayoutId);
         entity.setPullToNextView(pullToNextView);
         return entity;
     }
@@ -261,7 +224,8 @@ public class PullToNextLayout extends FrameLayout {
      * @param index
      * @param pullToNextView
      */
-    public void addPullToNextView(int index, PullToNextEntity pullToNextView) {
+    public void addPullToNextView(int index, PullToNextEntity pullToNextView ,int position) {
+
 
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         View view = pullToNextView.getPullToNextView();
@@ -270,23 +234,10 @@ public class PullToNextLayout extends FrameLayout {
             viewGroup.removeView(view);
         }
         this.addView(pullToNextView.getPullToNextView(), index, layoutParams);
-        FragmentTransaction transaction = mAdapter.getFm().beginTransaction();
-        Fragment f
-                = mAdapter.getFm().findFragmentByTag("position" + pullToNextView.getPosition());
-
-        if (f != null) {
-            transaction.attach(f);
-        } else {
-            transaction.add(pullToNextView.getFrameId(),
-                    mAdapter.getItem(pullToNextView.getPosition())
-                    , "position" + pullToNextView.getPosition());
+        if(position !=pullToNextView.getPosition()) {
+            pullToNextView.setPosition(position);
+            mAdapter.attachContentView(pullToNextView);
         }
-
-        transaction.commitAllowingStateLoss();
-
-        mAdapter.getFm().executePendingTransactions();
-
-
         initPullToNextEnable(pullToNextView);
 
     }
@@ -359,25 +310,9 @@ public class PullToNextLayout extends FrameLayout {
 
 
         if (pullToNextEntity.getPullToNextView() != null) {
-
-
             if (pullToNextEntity.isAttach()) {
-
                 removeView(pullToNextEntity.getPullToNextView());
-                Fragment f
-                        = mAdapter.getFm().findFragmentByTag("position" + pullToNextEntity.getPosition());
-
-                if (f != null) {
-                    mAdapter.getFm().beginTransaction().detach(
-                            f).commit();
-
-                }
-                if (null != mAdapter.getFm()) {
-
-                    mAdapter.getFm().executePendingTransactions();
-                }
-
-
+                mAdapter.detachContentView(pullToNextEntity);
             }
         }
 
@@ -387,7 +322,7 @@ public class PullToNextLayout extends FrameLayout {
 
         remove(previousPTE);
         Animator anim = simpleAnimation.getPullUpAnim(nextPTE.getPullToNextView(), currentPTE.getPullToNextView());
-        anim.addListener(new Animator.AnimatorListener() {
+        anim.addListener(new SimpleAnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
                 isAnimating = true;
@@ -406,28 +341,12 @@ public class PullToNextLayout extends FrameLayout {
                 invalidateView(currentPTE.getPosition());
 
             }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
         });
 
         anim.start();
-
-
     }
-
-
     public void setOnItemSelectListener(OnItemSelectListener onItemSelectListener) {
         this.mOnItemSelectListener = onItemSelectListener;
-
-
     }
 
 
@@ -441,7 +360,6 @@ public class PullToNextLayout extends FrameLayout {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return isAnimating || super.onInterceptTouchEvent(ev);
     }
-
 
     class PUllToNextDataSetObservable extends PullToNextDataObserver {
 
@@ -462,8 +380,7 @@ public class PullToNextLayout extends FrameLayout {
         @Override
         public void onInvalidated() {
             super.onInvalidated();
-
-            cleanAlFragment();
+            mAdapter.cleanAll();
         }
 
 
@@ -497,7 +414,7 @@ public class PullToNextLayout extends FrameLayout {
             Animator anim = simpleAnimation.getDeleteItemAnim(nextPTE.getPullToNextView(), currentPTE.getPullToNextView());
 
 
-            anim.addListener(new Animator.AnimatorListener() {
+            anim.addListener(new SimpleAnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
                     isAnimating = true;
@@ -505,7 +422,7 @@ public class PullToNextLayout extends FrameLayout {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mAdapter.remove(currentPTE.getPosition());
+                    mAdapter.deleteItem(currentPTE.getPosition());
                     mItemCount = mAdapter.getCount();
                     isAnimating = false;
                     PullToNextEntity temp = nextPTE;
@@ -515,13 +432,7 @@ public class PullToNextLayout extends FrameLayout {
                     setCurrentItem(0);
                 }
 
-                @Override
-                public void onAnimationCancel(Animator animation) {
-                }
 
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-                }
             });
 
             anim.start();
@@ -530,40 +441,22 @@ public class PullToNextLayout extends FrameLayout {
         } else {
             remove(nextPTE);
             Animator anim = simpleAnimation.getDeleteItemAnim(previousPTE.getPullToNextView(), currentPTE.getPullToNextView());
-
-
-            anim.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    isAnimating = true;
-                }
+            anim.addListener(new SimpleAnimatorListener() {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
 
-                    mAdapter.remove(currentPTE.getPosition());
+                    mAdapter.deleteItem(currentPTE.getPosition());
                     isAnimating = false;
                     mItemCount = mAdapter.getCount();
                     PullToNextEntity temp = previousPTE;
-
                     previousPTE = currentPTE;
                     currentPTE = temp;
                     setCurrentItem(currentPTE.getPosition());
-
-
                 }
 
-                @Override
-                public void onAnimationCancel(Animator animation) {
 
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
             });
-
             anim.start();
 
         }

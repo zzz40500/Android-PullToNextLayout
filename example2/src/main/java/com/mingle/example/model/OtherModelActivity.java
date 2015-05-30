@@ -1,4 +1,4 @@
-package com.mingle.example;
+package com.mingle.example.model;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,20 +8,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.mingle.example.R;
 import com.mingle.pulltonextlayout.OnItemSelectListener;
-import com.mingle.pulltonextlayout.PullToNextAdapter;
+import com.mingle.pulltonextlayout.adapter.PullToNextFragmentAdapter;
 import com.mingle.pulltonextlayout.PullToNextLayout;
+import com.mingle.pulltonextlayout.adapter.PullToNextModelAdapter;
+import com.mingle.pulltonextlayout.model.PullToNextModel;
 
 import java.util.ArrayList;
 
 
-public class OtherActivity extends ActionBarActivity {
+public class OtherModelActivity extends ActionBarActivity {
 
     public PullToNextLayout pullToNextLayout;
 
-    private FragmentPagerAdapter ad;
 
-    private ArrayList<Fragment> list;
+    private ArrayList<PullToNextModel> list;
     private  String[] names={"于文文","张钧甯","陈乔恩","贾青"};
 
     @Override
@@ -38,13 +40,13 @@ public class OtherActivity extends ActionBarActivity {
 
         list=new ArrayList<>();
 
-        list.add(new OtherFragment(0));
-        list.add(new OtherFragment(1));
-        list.add(new OtherFragment(2));
-        list.add(new OtherFragment(3));
+        list.add(new OtherViewModel(0));
+        list.add(new OtherViewModel(1));
+        list.add(new OtherViewModel(2));
+        list.add(new OtherViewModel(3));
 
 
-        pullToNextLayout.setAdapter(new PullToNextAdapter(getSupportFragmentManager(), list));
+        pullToNextLayout.setAdapter(new PullToNextModelAdapter(this, list));
 
         pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override
@@ -60,16 +62,11 @@ public class OtherActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_pull_to_next_layout_demo, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
 

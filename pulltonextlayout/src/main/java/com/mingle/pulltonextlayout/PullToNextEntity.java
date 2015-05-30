@@ -1,15 +1,13 @@
 package com.mingle.pulltonextlayout;
 
-import android.support.v4.app.FragmentManager;
-
 /**
  * Created by zzz40500 on 15/3/28.
  */
 public class PullToNextEntity {
 
-    private PullToNextView pullToNextView;
-    private  int frameId;
-    private   int position;
+    private  PullToNextView pullToNextView;
+    private  int contentId;
+    private  int position=-1;
 
 
     public PullToNextView getPullToNextView() {
@@ -20,12 +18,12 @@ public class PullToNextEntity {
         this.pullToNextView = pullToNextView;
     }
 
-    public int getFrameId() {
-        return frameId;
+    public int getContentId() {
+        return contentId;
     }
 
-    public void setFrameId(int frameId) {
-        this.frameId = frameId;
+    public void setContentId(int contentId) {
+        this.contentId = contentId;
     }
 
     public int getPosition() {
@@ -43,9 +41,8 @@ public class PullToNextEntity {
 
     }
 
-    public void reset(FragmentManager fm){
-        getPullToNextView().reset(fm,getPosition());
-
+    public void reset(BaseAdapter adapter){
+        getPullToNextView().reset(adapter,getPosition());
 
     }
 }

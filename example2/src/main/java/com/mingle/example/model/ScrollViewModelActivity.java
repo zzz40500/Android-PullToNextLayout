@@ -1,27 +1,29 @@
-package com.mingle.example;
+package com.mingle.example.model;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.mingle.example.R;
 import com.mingle.pulltonextlayout.OnItemSelectListener;
-import com.mingle.pulltonextlayout.PullToNextAdapter;
 import com.mingle.pulltonextlayout.PullToNextLayout;
+import com.mingle.pulltonextlayout.adapter.PullToNextModelAdapter;
+import com.mingle.pulltonextlayout.model.PullToNextModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class ScrollViewActivity extends ActionBarActivity {
+public class ScrollViewModelActivity extends ActionBarActivity {
 
     public  PullToNextLayout pullToNextLayout;
 
-    private ArrayList<Fragment> list;
+    private List<PullToNextModel> list;
 
     private int  currentIndex=0;
-    private PullToNextAdapter adapter;
+    private PullToNextModelAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +39,17 @@ public class ScrollViewActivity extends ActionBarActivity {
 
         list=new ArrayList<>();
 
-//        for (int i = 0; i < 4; i++) {
-//
-//            list.add(new ScrollViewFragment(currentIndex++));
-//
-//        }
-        adapter=  new PullToNextAdapter(getSupportFragmentManager(), list);
+        for (int i = 0; i < 4; i++) {
+
+            list.add(new ScrollViewModel(currentIndex++));
+        }
+
+        adapter=  new PullToNextModelAdapter(this,list);
         pullToNextLayout.setAdapter(adapter);
 
         pullToNextLayout.setOnItemSelectListener(new OnItemSelectListener() {
             @Override
             public void onSelectItem(int position, View view) {
-
-
                 setTitle(position+1+".0 谷歌仍是毕业生心目中的最佳雇主");
             }
         });
@@ -75,22 +75,13 @@ public class ScrollViewActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if(id== R.id.action_addALL){
 
-//
-
 
             for (int i = 0; i < 5; i++) {
 
-//                list.add(new ScrollViewFragment(currentIndex++));
-                adapter.addItem(new ScrollViewFragment(currentIndex++));
-
+                list.add(new ScrollViewModel(currentIndex++));
             }
-//            adapter.notifyDataSetChanged();
 
-
-
-
-
-//             pullToNextLayout.setAdapter( new PullToNextAdapter(getSupportFragmentManager(), list));
+            adapter.notifyDataSetChanged();
 
         }else if(id== R.id.action_setSelection){
 
