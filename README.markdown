@@ -1,13 +1,14 @@
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--PullToNextLayout-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1893)
+---
 
 
- #效果图先行:#
 ![webView.gif](http://upload-images.jianshu.io/upload_images/166866-c9840dfc44752550.gif)
 
 ![ScrollView.gif](http://upload-images.jianshu.io/upload_images/166866-2609a7f9c0d8f740.gif)
 
 ![other.gif](http://upload-images.jianshu.io/upload_images/166866-3a9ed8d196dad787.gif)
+
 
 
 [github](https://github.com/zzz40500/Android-PullToNextLayout)
@@ -143,11 +144,6 @@ ScrollViewModel
         super.setUserVisibleHint(userVisibleHint);
 
         if(userVisibleHint){
-
-
-
-
-
         }
         Log.e(TAG, "userVisibleHint" + userVisibleHint+"   " + index);
     }
@@ -155,7 +151,7 @@ ScrollViewModel
 
 1.3.1 更新
 >1. 修改了onBindView方法暴露出PullToNextView 和 position 字段
-* 支持动态的修改提示提示内容. 
+* 支持动态修改提示提示内容. 
 
 1.3.0 更新
 >1. 重构了部分代码.Deprecated 了PullToNextFragmentAdapter,加入了PullToNextModelAdapter,新的适配器支持了相同视图的复用.
