@@ -1,6 +1,8 @@
- #效果图先行:#
+
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--PullToNextLayout-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1893)
 
+
+ #效果图先行:#
 ![webView.gif](http://upload-images.jianshu.io/upload_images/166866-c9840dfc44752550.gif)
 
 ![ScrollView.gif](http://upload-images.jianshu.io/upload_images/166866-2609a7f9c0d8f740.gif)
