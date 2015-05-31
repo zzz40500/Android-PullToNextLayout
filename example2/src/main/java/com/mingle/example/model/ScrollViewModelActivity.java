@@ -2,6 +2,7 @@ package com.mingle.example.model;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,6 +52,7 @@ public class ScrollViewModelActivity extends ActionBarActivity {
             @Override
             public void onSelectItem(int position, View view) {
                 setTitle(position+1+".0 谷歌仍是毕业生心目中的最佳雇主");
+
             }
         });
         setTitle(1+".0 谷歌仍是毕业生心目中的最佳雇主");

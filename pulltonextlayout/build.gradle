@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-version = "1.3.2"
+version = "1.3.0"
 // 根节点添加
 
 android {
@@ -26,12 +26,12 @@ android {
 dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.android.support:support-v4:22.1.1'
-    
-}
-def siteUrl = 'https://github.com/zzz40500/Android-PullToNextLayout'    // project homepage
-def gitUrl = 'https://github.com/zzz40500/Android-PullToNextLayout.git' // project git
 
-group = "com.mingle"
+}
+def siteUrl = 'https://github.com/zzz40500/Android-PullToNextLayout'
+def gitUrl = 'https://github.com/zzz40500/Android-PullToNextLayout.git'
+
+group = "com.mingle.zzz40500"
 
 install {
     repositories.mavenInstaller {
@@ -94,7 +94,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "headsUp"
+        name = "pullToNext"
         // #CONFIG# project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl

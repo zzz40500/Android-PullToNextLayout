@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mingle.example.R;
+import com.mingle.pulltonextlayout.PullToNextView;
 import com.mingle.pulltonextlayout.model.PullToNextModel;
 
 /**
@@ -38,9 +39,7 @@ public class OtherViewModel extends PullToNextModel {
     }
 
     @Override
-    public void onBindView(View v) {
-
-
+    public void onBindView(int position, View v, PullToNextView pullToNextView) {
         TextView nameTV= (TextView) v.findViewById(R.id.nameTV);
         TextView birthdayTV= (TextView) v.findViewById(R.id.birthdayTV);
         ImageView imageView= (ImageView) v.findViewById(R.id.image);
@@ -50,8 +49,9 @@ public class OtherViewModel extends PullToNextModel {
         imageView.setImageResource(imgRes[index]);
 
         v.setClickable(true);
-
     }
+
+
 
 
 }

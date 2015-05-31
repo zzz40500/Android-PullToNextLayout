@@ -7,6 +7,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.mingle.example.R;
+import com.mingle.pulltonextlayout.PromptEntity;
+import com.mingle.pulltonextlayout.PullToNextView;
 import com.mingle.pulltonextlayout.model.PullToNextModel;
 
 /**
@@ -48,13 +50,22 @@ public class ScrollViewModel extends PullToNextModel {
         Log.e(TAG,"onCreate"+"   "+index);
     }
 
+    /**
+     * 返回视图
+     * @return
+     */
     @Override
     public int getLayoutViewId() {
         return R.layout.fragment_scrollview;
     }
-
+    /**
+     * 绑定数据源
+     * @param v
+     */
     @Override
-    public void onBindView(View v) {
+    public void onBindView(int position, View v, PullToNextView pullToNextView) {
+
+        PromptEntity p=new PromptEntity();
 
         TextView titleTV= (TextView) v.findViewById(R.id.titleTV);
         TextView contentTv= (TextView) v.findViewById(R.id.textView);
@@ -62,12 +73,19 @@ public class ScrollViewModel extends PullToNextModel {
         titleTV.setText(index+1+".0"+title);
         contentTv.setText(content);
         Log.e(TAG, "onBindView"+"   "+index);
-
     }
 
+
+
+
+    /**
+     * 在onBindView 调用后调用.
+     * @param view
+     */
     @Override
-    public void onResumeView(View view) {
-        super.onResumeView(view);
+    public void onResumeView(int position, View view, PullToNextView pullToNextView) {
+        super.onResumeView(position, view, pullToNextView);
+
         if(scrollView!=null){
             scrollView.pageScroll(ScrollView.FOCUS_UP);
         }
@@ -75,15 +93,19 @@ public class ScrollViewModel extends PullToNextModel {
     }
 
 
+    /**
+     * 解绑数据
+     * @param view
+     */
 
     @Override
-    public void onUnBindView(View view) {
-        super.onUnBindView(view);
+    public void onUnBindView(int position, View view, PullToNextView pullToNextView) {
+        super.onUnBindView(position,view,pullToNextView);
         Log.e(TAG, "onUnBindView"+"   "+index);
     }
     @Override
-    public void onPauseView(View view) {
-        super.onPauseView(view);
+    public void onPauseView(int position, View view, PullToNextView pullToNextView) {
+        super.onPauseView(position,view,pullToNextView);
         Log.e(TAG, "onPauseView"+"   "+index);
     }
     @Override
@@ -91,6 +113,9 @@ public class ScrollViewModel extends PullToNextModel {
         super.setUserVisibleHint(userVisibleHint);
 
         if(userVisibleHint){
+
+
+
 
 
         }

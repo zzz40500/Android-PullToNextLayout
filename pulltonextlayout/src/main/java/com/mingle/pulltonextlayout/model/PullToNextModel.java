@@ -3,6 +3,9 @@ package com.mingle.pulltonextlayout.model;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.view.View;
+import android.widget.BaseAdapter;
+
+import com.mingle.pulltonextlayout.PullToNextView;
 
 /**
  *
@@ -38,14 +41,14 @@ public abstract class PullToNextModel {
      *
      * @param view
      */
-    public abstract void onBindView(View view) ;
+    public abstract void onBindView( int position,View view, PullToNextView pullToNextView) ;
 
     /**
      * 可见状态
      *
      * @param view
      */
-    public void onResumeView(View view) {
+    public void onResumeView(int position,View view, PullToNextView pullToNextView) {
 
     }
 
@@ -54,7 +57,7 @@ public abstract class PullToNextModel {
      *
      * @param view
      */
-    public void onPauseView(View view) {
+    public void onPauseView(int position,View view, PullToNextView pullToNextView) {
 
     }
 
@@ -64,7 +67,7 @@ public abstract class PullToNextModel {
      * @param view
      */
 
-    public void onUnBindView(View view) {
+    public void onUnBindView(int position,View view, PullToNextView pullToNextView) {
 
     }
 

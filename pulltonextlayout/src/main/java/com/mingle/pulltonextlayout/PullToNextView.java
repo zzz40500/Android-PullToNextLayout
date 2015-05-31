@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -51,6 +50,11 @@ public class PullToNextView extends LinearLayout {
 
 
     private View mFootView;
+
+    private PromptEntity mPromptEntity;
+
+
+
 
     public PullToNextView(Context context) {
         super(context);
@@ -349,8 +353,6 @@ public class PullToNextView extends LinearLayout {
         initContentView(adapter, position);
         mScrollView=null;
         mWebView=null;
-        Log.e("reset","position "+position);
-
         ViewHelper.setAlpha(this, 1);
         ViewHelper.setTranslationY(this, 0);
         ViewHelper.setTranslationY(this, 0);
@@ -441,13 +443,12 @@ public class PullToNextView extends LinearLayout {
             //下一个
 
             if (!isHashNext) {
-                footPromptTV.setText(R.string.ptn_no_more_data);
+                footPromptTV.setText(getPromptEntity().getNoMoreDatePtn());
             } else if (newTopMargin < -3 * mHeadViewHeight) {
 
-                footPromptTV.setText(R.string.ptn_release_to_next);
+                footPromptTV.setText(getPromptEntity().getReleaseToNextPtn());
             } else {
-                footPromptTV.setText(R.string.ptn_pull_up_to_next);
-
+                footPromptTV.setText(getPromptEntity().getPullUpToNextPtn());
             }
 
 
@@ -455,12 +456,12 @@ public class PullToNextView extends LinearLayout {
 
             //前一个
             if (!isHashPrevious) {
-                headPromptTV.setText(R.string.ptn_the_first);
+                headPromptTV.setText(getPromptEntity().getTheFirstPtn());
             } else if (newTopMargin > mHeadViewHeight) {
 
-                headPromptTV.setText(R.string.ptn_release_to_previous);
+                headPromptTV.setText(getPromptEntity().getReleaseToPreviousPtn());
             } else {
-                headPromptTV.setText(R.string.ptn_pull_down_to_previous);
+                headPromptTV.setText(getPromptEntity().getPullDownToPreviousPtn());
 
             }
 
@@ -511,5 +512,19 @@ public class PullToNextView extends LinearLayout {
 
     public void setHashNext(boolean isHashNext) {
         this.isHashNext = isHashNext;
+    }
+
+
+    public PromptEntity getPromptEntity() {
+
+        if(mPromptEntity==null){
+            mPromptEntity=new PromptEntity(getContext());
+        }
+
+        return mPromptEntity;
+    }
+
+    public void setPromptEntity(PromptEntity promptEntity) {
+        this.mPromptEntity = promptEntity;
     }
 }

@@ -463,4 +463,15 @@ public class PullToNextLayout extends FrameLayout {
     }
 
 
+
+
+    public int getCurrentPosition(){
+        return currentPTE.getPosition();
+    }
+    public PullToNextView getCurrentPullToNext(){
+        return currentPTE.getPullToNextView();
+    }
+
+
+
 }

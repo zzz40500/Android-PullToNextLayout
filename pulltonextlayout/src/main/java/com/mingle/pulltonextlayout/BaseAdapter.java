@@ -1,9 +1,7 @@
 package com.mingle.pulltonextlayout;
 
-import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.mingle.pulltonextlayout.PullToNextEntity;
 import com.mingle.pulltonextlayout.observable.PullToNextDataObserver;
 import com.mingle.pulltonextlayout.observable.PullToNextDataSetObservable;
 

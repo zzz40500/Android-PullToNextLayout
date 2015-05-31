@@ -58,8 +58,8 @@ public class PullToNextModelAdapter extends BaseAdapter<PullToNextModel> {
         ViewGroup parentView = (ViewGroup) pullToNextEntity.getPullToNextView().findViewById(pullToNextEntity.getContentId());
         parentView.removeAllViews();
         parentView.addView(view);
-        model.onBindView(view);
-        model.onResumeView(view);
+        model.onBindView(pullToNextEntity.getPosition(), view, pullToNextEntity.getPullToNextView());
+        model.onResumeView(pullToNextEntity.getPosition(),view,pullToNextEntity.getPullToNextView());
     }
 
 
@@ -67,8 +67,8 @@ public class PullToNextModelAdapter extends BaseAdapter<PullToNextModel> {
     protected void detachContentView(PullToNextEntity pullToNextEntity) {
         PullToNextModel model = list.get(pullToNextEntity.getPosition());
         ViewGroup parentView = (ViewGroup) pullToNextEntity.getPullToNextView().findViewById(pullToNextEntity.getContentId());
-        model.onPauseView(model.getView());
-        model.onUnBindView(model.getView());
+        model.onPauseView(pullToNextEntity.getPosition(), model.getView(), pullToNextEntity.getPullToNextView());
+        model.onUnBindView(pullToNextEntity.getPosition(), model.getView(), pullToNextEntity.getPullToNextView());
         parentView.removeView(model.getView());
         model.setView(null);
     }
